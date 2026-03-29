@@ -57,7 +57,7 @@ HF_TOKEN="your-hf-token"
 3. Run `openenv validate` to assure spec conformance.
 4. Execute the fully reproducible LLM interaction script using the open-source `Llama-3.3-70B-Instruct` natively provided:
 ```bash
-python baseline.py
+python inference.py
 ```
 
 ### Docker deployment to Hugging Face Spaces
