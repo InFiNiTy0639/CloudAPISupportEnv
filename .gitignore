@@ -1,0 +1,20 @@
+# Environments
+venv/
+env/
+.env
+
+# Cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor/IDE configs
+.vscode/
+.idea/
+.DS_Store

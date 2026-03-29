@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openenv-submission"
+version = "1.0.0"
+description = "A realistic Cloud API Customer Support environment for OpenEnv."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "openenv-core",
+    "pydantic",
+    "huggingface_hub",
+    "fastapi",
+    "uvicorn",
+    "python-dotenv"
+]
+
+[project.scripts]
+server = "server.app:main"

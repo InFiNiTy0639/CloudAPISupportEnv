@@ -1,0 +1,19 @@
+name: CloudAPISupportEnv
+description: A realistic Cloud API Customer Support environment. The agent acts as a Tier 1 support engineer managing tickets.
+version: "1.0.0"
+difficulty: "Medium-Hard"
+reward_range: [-1.0, 1.0]
+episode_length: 50
+tags: ["customer-support", "saas", "api", "text-based", "decision-making"]
+action_space_description: "Structured JSON actions: classify_ticket, search_kb, reply_ticket, escalate_ticket, close_ticket."
+observation_space_description: "Current ticket details, queue size, KB search results, recent conversation history, and action status feedback."
+tasks:
+  - id: easy_classify
+    name: "Easy Ticket Classification"
+    description: "Categorize 5 straightforward API usage and billing tickets."
+  - id: medium_kb_reply
+    name: "Medium KB Search and Reply"
+    description: "Search the KB and reply correctly to 5 technical API tickets."
+  - id: hard_mixed_queue
+    name: "Hard Mixed Queue Management"
+    description: "Handle 10 complex tickets including data loss incidents (requiring escalation), technical debugging, and ambiguous requests."
