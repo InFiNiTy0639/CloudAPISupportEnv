@@ -1,3 +1,12 @@
+---
+title: CloudAPISupport-Env
+emoji: 🏢
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_file: server/app.py
+pinned: false
+---
 # OpenEnv Cloud API Customer Support Environment
 
 A highly-realistic customer support environment conforming to the OpenEnv specification. Designed to rigorously test LLM instruction following, safety boundaries, and tool use logic in a real-world SaaS setting.
