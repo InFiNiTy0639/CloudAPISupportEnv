@@ -59,5 +59,6 @@ GRADERS = {
 
 def evaluate_history(task_id: str, history: List[Dict[str, Any]]) -> float:
     if task_id in GRADERS:
-        return GRADERS[task_id](history)
-    return 0.0
+        score = GRADERS[task_id](history)
+        return min(0.999, max(0.001, score))
+    return 0.001
