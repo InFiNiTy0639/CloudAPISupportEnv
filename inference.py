@@ -16,6 +16,7 @@ def run_agent_on_task(task_id: str):
     print(f"\n{'='*50}")
     print(f"--- Running baseline for task: {task_id} ---")
     print(f"{'='*50}")
+    print(f"[START] task={task_id}", flush=True)
     env = CustomerSupportEnv(task_id)
     obs = env.reset()
     
@@ -38,8 +39,10 @@ Rules:
     client = InferenceClient("meta-llama/Llama-3.3-70B-Instruct", token=hf_token)
 
     total_reward = 0.0
+    step_count = 0
 
     while not env.done:
+        step_count += 1
         print(f"\n[Obs | Queue: {obs.tickets_remaining} left]")
         if obs.current_ticket:
             print(f"Ticket: [{obs.current_ticket.ticket_id}] {obs.current_ticket.subject} (Priority: {obs.current_ticket.priority})")
@@ -65,11 +68,14 @@ Rules:
         obs, reward, done, info = env.step(action)
         total_reward += reward.score
         
+        print(f"[STEP] step={step_count} reward={reward.score}", flush=True)
+        
         if done:
             break
             
     score = evaluate_history(task_id, env.history)
     print(f"\nTask {task_id} completed | Final Score (0.0 - 1.0): {score:.2f} | Total Accumulated Reward: {total_reward:.2f}")
+    print(f"[END] task={task_id} score={score} steps={step_count}", flush=True)
     return score
 
 if __name__ == "__main__":
