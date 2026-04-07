@@ -14,7 +14,8 @@ dependencies = [
     "huggingface_hub",
     "fastapi",
     "uvicorn",
-    "python-dotenv"
+    "python-dotenv",
+    "openai"
 ]
 
 [project.scripts]

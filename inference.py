@@ -34,9 +34,12 @@ Rules:
 5. close_ticket when the ticket is fully addressed. YOU MUST ACT (reply, escalate, classify) BEFORE CLOSING.
 """
 
-    hf_token = os.environ.get("HF_TOKEN")
-    from huggingface_hub import InferenceClient
-    client = InferenceClient("meta-llama/Llama-3.3-70B-Instruct", token=hf_token)
+    API_BASE_URL = os.getenv("API_BASE_URL", "https://router.huggingface.co/v1/")
+    MODEL_NAME = os.getenv("MODEL_NAME", "meta-llama/Llama-3.3-70B-Instruct")
+    HF_TOKEN = os.getenv("HF_TOKEN")
+    
+    from openai import OpenAI
+    client = OpenAI(base_url=API_BASE_URL, api_key=HF_TOKEN)
 
     total_reward = 0.0
     step_count = 0
@@ -53,8 +56,11 @@ Rules:
         
         try:
             messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": user_prompt}]
-            response = client.chat_completion(
-                messages=messages, max_tokens=250, response_format={"type": "json_object"}
+            response = client.chat.completions.create(
+                model=MODEL_NAME,
+                messages=messages, 
+                max_tokens=250, 
+                response_format={"type": "json_object"}
             )
             action_json = response.choices[0].message.content
 
